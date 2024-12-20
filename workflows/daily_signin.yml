@@ -2,7 +2,7 @@ name: Daily Sign-in
 
 on:
   schedule:
-    # 每天早上6点运行（UTC时间，需要根据实际情况调整）
+    # 每天早上6点运行（UTC时间）
     - cron: "0 6 * * *"
   workflow_dispatch:
 
@@ -23,6 +23,5 @@ jobs:
 
       - name: Run sign-in script
         env:
-          FORUM_USERNAME: ${{ secrets.FORUM_USERNAME }}
-          FORUM_PASSWORD: ${{ secrets.FORUM_PASSWORD }}
-        run: python scripts/signin.py
+          FORUM_COOKIE: ${{ secrets.FORUM_COOKIE }}
+        run: python scripts/signin_with_cookie.py
